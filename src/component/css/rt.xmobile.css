@@ -253,7 +253,10 @@ Badge的样式表
   padding-right: 0px; }
 
 .rt-nav-bar .buttons.buttons-right .button {
-  margin-left: 6px; }
+  margin-left: 6px;
+  font-size: 14px;
+  font-weight: 400;
+ }
 
 .rt-nav-bar .buttons .button-icon {
   border: 0; }

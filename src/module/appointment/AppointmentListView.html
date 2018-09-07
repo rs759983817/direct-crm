@@ -9,22 +9,29 @@
             border-radius: 12px;
             background: #fff;
             overflow: hidden;
-            margin-top: -3px;
+            /* margin-top: -3px; */
+            margin-bottom:8px;
         }
         .data_sj{
-            height: 40px;
-            line-height: 40px;
+            width: 100%;
+            display: flex;
             background: #f5f5f5;
             padding-left: 11px;
             color: #de0347;
             font-size: 15px;
+            padding-top: 11px;
         }
         .data_sj>img{
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            vertical-align: sub;
-            margin-right: 5px;
+            /* margin-top: 10px; */
+            margin-right: 7px;
+        }
+        .data_sj>span{
+            display: inline-block;
+            width: 90%;
+	        line-height: 18px;
         }
         .data_list{
             margin-left: 16px;
@@ -75,7 +82,7 @@
         <rt-search-bar rt-model="vm.queryValue" rt-placeholder="请输入主题" rt-on-search="search()">
         </rt-search-bar>
         <rt-list style="background:#f5f5f5;">
-            <rt-item ng-repeat="row in vm.appointmentList" ng-click="itemClick(row.appointmentid)" style="margin-top: -11px;">
+            <rt-item style="padding:0px 10px;" ng-repeat="row in vm.appointmentList" ng-click="itemClick(row.appointmentid)">
                 <!-- <div class="rt-list-row">
                     <p class="rt-list-row-header">
                         {{ row.subject }}
@@ -103,7 +110,7 @@
                 <div class="data_box">
                     <div class="data_sj">
                         <img src="assets/image/data1.png" />
-                        <span>{{ row.subject }}</span>
+                        <span style="padding-bottom:10px;">{{ row.subject }}</span>
                     </div>
                     <div class="data_list">
                         <div><img src="assets/image/data2.png" />客户</div>

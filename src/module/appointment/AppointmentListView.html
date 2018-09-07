@@ -1,0 +1,146 @@
+<ion-view title="约会" class="stable-bg" hide-back-button="true">
+    <style>
+        /* 2018/09/05 */
+        .data_box{
+            width: 100%;
+            margin: auto;
+            border: 1px solid #d9d9d9;
+            box-sizing: border-box;
+            border-radius: 12px;
+            background: #fff;
+            overflow: hidden;
+            margin-top: -3px;
+        }
+        .data_sj{
+            height: 40px;
+            line-height: 40px;
+            background: #f5f5f5;
+            padding-left: 11px;
+            color: #de0347;
+            font-size: 15px;
+        }
+        .data_sj>img{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: sub;
+            margin-right: 5px;
+        }
+        .data_list{
+            margin-left: 16px;
+            min-height: 36px;
+            display: flex;
+            border-bottom: 1px solid #d9d9d9;
+        }
+        .data_list>div:nth-of-type(1){
+            color: #bdbdbd;
+            font-size: 12px;
+            line-height: 36px;
+            margin-right: 15px;
+        }
+        .data_list>div:nth-of-type(1)>img{
+            width: 12px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        .data_list>div:nth-of-type(2){
+            color: #333;
+            font-size: 12px;
+            line-height: 20px;
+            padding-right: 5px;
+            padding-top: 8px;
+            padding-bottom: 5px;
+        }
+        .data_more{
+            height: 31px;
+            line-height: 31px;
+            text-align: right;
+            color: #DE0347;
+            font-size: 12px;
+            padding-right: 16px;
+        }
+    </style>
+    <ion-nav-buttons side="left">
+        <button class="button back-button button-clear button-icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="rt-right-button button button-clear" ng-click="createAppointment()">
+            创建
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="listRefresh()"></ion-refresher>
+        <rt-search-bar rt-model="vm.queryValue" rt-placeholder="请输入主题" rt-on-search="search()">
+        </rt-search-bar>
+        <rt-list style="background:#f5f5f5;">
+            <rt-item ng-repeat="row in vm.appointmentList" ng-click="itemClick(row.appointmentid)" style="margin-top: -11px;">
+                <!-- <div class="rt-list-row">
+                    <p class="rt-list-row-header">
+                        {{ row.subject }}
+                    </p>
+                </div>
+                <p>
+                    <span>客户：</span>
+                    <span class="ng-binding">{{row.new_account_id.Text}}</span>
+                </p>
+                <p>
+                    <span>商机：</span>
+                    <span class="ng-binding">{{row.new_opportunity_id.Text}}</span>
+                </p>
+                <p>
+                    <span>负责人：</span>
+                    <span class="ng-binding">{{row.ownerid.Text}}</span>
+                </p>
+                <p>
+                    <span>时间：</span>
+                    <span class="ng-binding">{{row.scheduledstartstr}}~{{row.scheduledendstr}}</span>
+                </p> -->
+
+                <!-- 2018/09/06 -->
+        
+                <div class="data_box">
+                    <div class="data_sj">
+                        <img src="assets/image/data1.png" />
+                        <span>{{ row.subject }}</span>
+                    </div>
+                    <div class="data_list">
+                        <div><img src="assets/image/data2.png" />客户</div>
+                        <div style="width: 81%;">{{row.new_account_id.Text}}</div>
+                    </div>
+                    <div class="data_list">
+                        <div><img src="assets/image/data3.png" />商机</div>
+                        <div>{{row.new_opportunity_id.Text}}</div>
+                    </div>
+                    <div class="data_list">
+                        <div><img src="assets/image/data4.png" />负责人</div>
+                        <div>{{row.ownerid.Text}}</div>
+                    </div>
+                    <div class="data_list">
+                        <div><img src="assets/image/data5.png" />时间</div>
+                        <div>{{row.scheduledstartstr}}~{{row.scheduledendstr}}</div>
+                    </div>
+                    <div class="data_more">详情></div>
+                </div>
+
+                <!-- <div class="rt-list-row">
+                    <div class="col">
+                        <span class="rt-list-row-label">客户：</span>
+                        <span class="rt-list-row-text">{{row.new_account_id.Text}}</span>
+                    </div>
+                    <div class="col">
+                        <span class="rt-list-row-label">商机：</span>
+                        <span class="rt-list-row-text">{{row.new_opportunity_id.Text}}</span>
+                    </div>
+                </div> -->
+            </rt-item>
+        </rt-list>
+
+
+        <!--没有数据的页面-->
+        <rt-empty-view rt-related-model="vm.appointmentList" rt-message="没有约会信息"></rt-empty-view>
+        <!--下拉翻页-->
+        <ion-infinite-scroll ng-if="isLoadMore" on-infinite="loadMoreData()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

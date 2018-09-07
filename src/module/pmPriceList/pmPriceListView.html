@@ -1,0 +1,168 @@
+<ion-view title="PM价格清单" class="stable-bg" hide-back-button="true">
+    <style>
+        .price_box{
+            width: 100%;
+            margin: auto;
+            border-radius: 12px;
+            background: #fff;
+            overflow: hidden;
+            border: 1px solid #d9d9d9;
+            box-sizing: border-box;
+            margin-top: 0px;
+            margin-bottom: 8px;
+        }
+        .price_num{
+            height: 40px;
+            line-height: 40px;
+            padding-left: 16px;
+            color: #c0003b;
+            font-size: 15px;
+            background: #f5f5f5 !important;
+        }
+        .price_num>img{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 7px;
+        }
+        .price_name{
+            padding:13px 0px 10px 16px;
+            display: flex;
+        }
+        .price_name_til{
+            width: 104px;
+            color: #999;
+            font-size: 12px;
+        }
+        .price_name_til>img{
+            width: 11px;
+            height: 11px;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+        .price_name_con{
+            width: 100%;
+            color: #333;
+            font-size: 12px;
+            padding-right: 5px;
+        }
+        .price_contrast{
+            width: 95.3%;
+            height: 77px;
+            display: flex;
+            justify-content: space-between;
+            margin-left: 16px;
+            border-top: 1px solid #d9d9d9;
+            box-sizing: border-box;
+        }
+        .price_contrast>div{
+            width: 33.3%;
+            height: 40px;
+            display: flex;
+            margin-top: 16.5px;
+        }
+        .price_contrast>div:nth-of-type(2){
+            border-left: 1px solid #d9d9d9;
+            border-right: 1px solid #d9d9d9;
+            box-sizing: border-box;
+        }
+        .price_contrast>div>img{
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-top: 9px;
+            margin-left: 16%;
+            margin-right: 10px;
+        }
+        .price_contrast>div>div{
+            width: 68px;
+            margin-top: -3px;
+        }
+        .price_contrast>div>div>div:nth-of-type(1){
+            color: #333;
+            font-size: 18px;
+        }
+        .price_contrast>div>div>div:nth-of-type(2){
+            color: #999;
+            font-size: 12px;
+            margin-top: -4px;
+        }
+    </style>
+    <ion-nav-buttons side="left">
+        <button class="button back-button button-clear button-icon ion-ios-arrow-left" ng-click="goBack()"></button>
+    </ion-nav-buttons>
+
+
+    <ion-content>
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="listRefresh()"></ion-refresher>
+        <rt-search-bar rt-model="vm.queryValue" rt-placeholder="请输入物料编码" rt-on-search="search()" style="background:#f5f5f5;border-top: 1px solid #d9d9d9;">
+        </rt-search-bar>
+        <rt-list style="background:#f5f5f5;">
+            <rt-item style="border-bottom:none;background:#f5f5f5;padding: 0px 10px" ng-repeat="row in vm.pmPriceList" ng-click="itemClick(row.ItemId)" >
+
+                <!-- <p>
+                    <span>物料编码：</span>
+                    <span  class="ng-binding">{{row.ItemId}}</span>
+                </p>
+                <p>
+                    <span>物料名称：</span>
+                    <span  class="ng-binding">{{row.ItemName}}</span>
+                </p>
+                <p>
+                    <span>农行：</span>
+                    <span  class="ng-binding">{{row.salePriceABC}}</span>
+                </p>
+                <p>
+                    <span>移动：</span>
+                    <span  class="ng-binding">{{row.salePriceCM}}</span>
+                </p>
+                <p>
+                    <span>国网：</span>
+                    <span  class="ng-binding">{{row.salePriceSM}}</span>
+                </p> -->
+                <div class="price_box">
+                    <div class="price_num">
+                        <img src="assets/image/price-num.png" />
+                        <span>{{row.ItemId}}</span>
+                    </div>
+                    <div class="price_name" style="background:#fff;">
+                        <div class="price_name_til"><img src="assets/image/price-name.png" />物料名称</div>
+                        <div class="price_name_con">{{row.ItemName}}</div>
+                    </div>
+                    <div class="price_contrast" style="background:#fff;">
+                        <div>
+                            <img src="assets/image/price1.png" />
+                            <div>
+                                <div>{{row.salePriceABC}}</div>
+                                <div>农行</div>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="assets/image/price2.png" />
+                            <div>
+                                <div>{{row.salePriceCM}}</div>
+                                <div>移动</div>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="assets/image/price3.png" />
+                            <div>
+                                <div>{{row.salePriceSM}}</div>
+                                <div>国网</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </rt-item>
+        </rt-list>
+
+
+        <!--没有数据的页面-->
+        <rt-empty-view rt-related-model="vm.pmPriceList" rt-message="没有PM价格清单信息"></rt-empty-view>
+        <!--下拉翻页-->
+        <ion-infinite-scroll ng-if="isLoadMore" on-infinite="loadMoreData()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

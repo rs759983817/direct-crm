@@ -1,0 +1,25 @@
+<div class="modal" style="background-color: transparent;" ng-controller="cascadePickerController">
+    <div class="rt-cascade-picker-mask" ng-click="cascadePicker.close()">
+    </div>
+    <div class="rt-cascade-picker-dialog">
+        <div class="_header">
+            <span>{{cascadePicker.title}}</span>
+            <i class="icon ion-android-close" ng-click=cascadePicker.close() style="float: right;"></i>
+        </div>
+        <ul class="_indicator">
+            <li class="_indicator-item" ng-class="{ 'selected':cascadePicker.slideIndex == $index }" ng-repeat="o in cascadePicker.objects" ng-click="cascadePicker.slideTo($index)">
+                {{ o.selectedValue == null ? "请选择" : o.selectedValue.text }}
+            </li>
+        </ul>
+        <ion-slide-box class="_slider" show-pager="false" active-slide="cascadePicker.slideIndex" on-slide-changed="cascadePicker.slideHasChanged($index)">
+            <ion-slide ng-repeat="o in cascadePicker.objects">
+                <ion-scroll class="_data-container">
+                    <div class="_data-item" ng-class="{'selected':item === o.selectedValue}" ng-repeat="item in o.dataSource" ng-click="cascadePicker.pick($parent.$index,item)">
+                        {{item.text}}
+                        <i class="icon ion-android-done" style="margin-left:10px;"></i>
+                    </div>
+                </ion-scroll>
+            </ion-slide>
+        </ion-slide-box>
+    </div>
+</div>

@@ -1,0 +1,193 @@
+<ion-view title="办公">
+    <style>
+        .rt-ws-item-divider {
+            min-height: 10px;
+            padding: 0;
+        }
+        
+        .rt-ws-menu-item {
+            border-width: 0;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .rt-ws-menu-item p {
+            margin-bottom: 0px;
+            color: #555;
+        }
+        
+        .rt-ws-menu-item a {
+            text-decoration:none;
+            display: block;
+        }
+        
+        .rt-ws-menu-item img {
+            height: 32px;
+        }
+       
+        .rt-ws-item-title {
+            color: #888;
+            border-left: 4px solid #0099ff;
+            padding-top: 5px;
+            padding-bottom: 0px;
+            font-size: 12px;
+        }
+    </style>
+
+    <ion-content has-header="true">
+        <ion-list>
+            <div class="item item-divider rt-ws-item-divider"></div>
+            <ion-item class="rt-ws-item-title">
+                <span><span><span>通用</span>
+            </ion-item>
+            <ion-item class="row rt-ws-menu-item">
+                <a class="col col-25" href = 'raw:open-contact'>
+                    <p>
+                        <img ng-src="asset/img/menu-icon-addressBook.png" />
+                    </p>
+                    <p>
+                        通讯录
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@notice/noticeView/">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-notice.png" />
+                    </p>
+                    <p>
+                        公告
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@knowledge/default">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-knowledge.png" />
+                    </p>
+                    <p>
+                        知识库
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@flowapproval/list">
+                    <p><img ng-src="asset/img/menu-icon-flowApproval.png" /></p>
+                    <p>审批
+                        </p>
+                </a>
+            </ion-item>
+
+            <div class="item item-divider rt-ws-item-divider"></div>
+            <ion-item class="rt-ws-item-title">
+                <span><span><span>任务</span>
+            </ion-item>
+            <ion-item class="row rt-ws-menu-item">
+                <a class="col col-25" href = "app:opennew@calendar/calendarListView">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-calendar.png" />
+                    </p>
+                    <p>
+                        日程
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@task/list">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-task.png" />
+                    </p>
+                    <p>
+                        任务
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@officeattendance/map">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-officeAttendance.png" />
+                    </p>
+                    <p>
+                        考勤管理
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@attendance/map">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-attendance.png" />
+                    </p>
+                    <p>
+                        外勤签到
+                        </p>
+                </a>
+            </ion-item>
+            <div class="item item-divider rt-ws-item-divider"></div>
+            <ion-item class="rt-ws-item-title">
+                <span><span><span>报告</span>
+            </ion-item>
+            <ion-item class="row rt-ws-menu-item">
+                <a class="col col-25" href = "app:opennew@workreportread/list">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-workReportRead.png" />
+                    </p>
+                    <p>
+                        工作报告
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@dailyreport/list">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-dailyreport.png" />
+                    </p>
+                    <p>
+                        日报
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@weeklyreport/list">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-weeklyreport.png" />
+                    </p>
+                    <p>
+                        周报
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@monthlyreport/list">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-monthlyreport.png" />
+                    </p>
+                    <p>
+                        月报
+                        </p>
+                </a>
+            </ion-item>
+
+            <div class="item item-divider rt-ws-item-divider"></div>
+            <ion-item class="rt-ws-item-title">
+                <span><span><span>申请</span>
+            </ion-item>
+            <ion-item class="row rt-ws-menu-item">
+
+                <a class="col col-25" href = "app:opennew@businesstrip/edit/">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-businessTrip.png" />
+                    </p>
+                    <p>
+                        出差申请
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@absence/edit/">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-absence.png" />
+                    </p>
+                    <p>
+                        请假申请
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@expense/edit/">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-expense.png" />
+                    </p>
+                    <p>
+                        报销申请
+                        </p>
+                </a>
+                <a class="col col-25" href = "app:opennew@commonapplication/edit/">
+                    <p>
+                        <img ng-src="asset/img/menu-icon-commonApplication.png" />
+                    </p>
+                    <p>
+                        通用申请
+                        </p>
+                </a>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

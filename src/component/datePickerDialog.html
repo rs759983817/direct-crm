@@ -1,0 +1,47 @@
+<div class="modal" style="background-color: transparent;" ng-controller="datePickerController">
+    <div class="rt-date-picker-mask" ng-click="datePicker.close()">
+    </div>
+    <div class="rt-date-picker-dialog" on-swipe-right="datePicker.previousMonth()" on-swipe-left="datePicker.nextMonth()" on-swipe-down="datePicker.previousYear()" on-swipe-up="datePicker.nextYear()">
+        <div class="_header">
+            <!--             <div class="_left" ng-click="datePicker.previousMonth()">
+                <i class="icon ion-chevron-left"></i>
+            </div> -->
+            <div class="_title">
+                <span>
+                {{ datePicker.year }}
+                年
+                {{datePicker.month >= 10 ? '' + datePicker.month : '0' + datePicker.month}}
+                月
+                </span>
+            </div>
+            <!--             <div class="_right" ng-click="datePicker.nextMonth()">
+                <i class="icon ion-chevron-right"></i>
+            </div> -->
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th style="height: {{datePicker.cellHeight}}px;">日</th>
+                    <th style="height: {{datePicker.cellHeight}}px;">一</th>
+                    <th style="height: {{datePicker.cellHeight}}px;">二</th>
+                    <th style="height: {{datePicker.cellHeight}}px;">三</th>
+                    <th style="height: {{datePicker.cellHeight}}px;">四</th>
+                    <th style="height: {{datePicker.cellHeight}}px;">五</th>
+                    <th style="height: {{datePicker.cellHeight}}px;">六</th>
+                </tr>
+                <tr ng-repeat="week in datePicker.calandar">
+                    <td ng-repeat="day in week" style="height: {{datePicker.cellHeight}}px;" ng-click="datePicker.chooseDate(day.value)">
+                        <div style="height:28px;width:28px;line-height:28px;text-align:center;display:inline-block;" ng-class="{'selected':(datePicker.selectedValue!=null && day.value.getTime() == datePicker.selectedValue.getTime())}">
+                            {{day.text}}
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="_footer">
+            <div class="_left" ng-click="datePicker.clear()">清除</div>
+            <div class="_middle">&nbsp</div>
+            <div class="_right" ng-click="datePicker.ok()">确定</div> 
+        </div>
+    </div>
+</div>

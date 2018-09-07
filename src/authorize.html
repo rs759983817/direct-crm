@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>正在加载...</title>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function getUrlParam(name) {
+            try {
+                var query = location.search.substring(1);
+                var pairs = query.split("&");
+                for (var i = 0; i < pairs.length; i++) {
+                    var pos = pairs[i].indexOf('=');
+                    if (pos == -1) continue;
+                    var argname = pairs[i].substring(0, pos);
+                    if (argname == name)
+                        return pairs[i].substring(pos + 1);
+                }
+            } catch (e) {
+                alert(e);
+            }
+            return '';
+        }
+
+        function isNullOrEmptyString(s) {
+            return s === undefined || s === null || s == "" || s.length === 0;
+        }
+
+
+        $(function () {
+            var appName = "RekTec_iCRM";
+            // var authToken = localStorage["Wechat_" + appName + "_AuthToken"];
+
+            // //如果已经验认过了，则直接到功能页面
+            var authToken = localStorage.XrmAuthToken;
+            // if (!isNullOrEmptyString(authToken)) {
+            //     var redirect_url = getUrlParam("redirect_url");
+            //     var url;
+            //     if (isNullOrEmptyString(redirect_url)) {
+            //         localStorage.DeviceType = "wechat";
+            //         url = location.origin + "/wechat/index.html#/app/application";
+            //     }
+            //     else {
+            //         url = location.origin + decodeURIComponent(redirect_url, "utf-8");
+            //     }
+
+            //     location.replace(url);
+            //     return;
+            // }
+
+            //否则先获取当前用户的信息
+            var code = getUrlParam("code");
+
+            //alert(code);
+            //alert(location.origin);
+            $.ajax({
+                type: "POST",
+                url: "../token",
+                data: { code: code, grant_type: "wechatqy" },
+
+                beforeSend: function (request) {
+                    request.setRequestHeader("app", appName);
+                },
+
+                success: function (token) {
+                    //localStorage["Wechat_" + appName + "_AuthToken"] = token.access_token;
+                    //alert(token.access_token);
+                    localStorage.XrmAuthToken = token.access_token;
+                    localStorage.RefreshToken = token.refresh_token;
+                    var redirect_url = getUrlParam("redirect_url");
+                    var url;
+                    if (isNullOrEmptyString(redirect_url)) {
+                        localStorage.DeviceType = "wechat";
+                        url = location.origin + "/wechat/index.html#/app/application";
+                    }
+                    else {
+                        url = location.origin + "/wechat/index.html#" + decodeURIComponent(redirect_url, "utf-8");
+                    }
+                    //alert(url);
+                    location.replace(url);
+                },
+
+                error: function (xhr, status, error) {
+                    //
+                    /* url = location.origin + "/wechat/index.html#/home/error";
+                     location.replace(url);*/
+                    alert(xhr.responseText.toString());
+                }
+            });
+        });
+
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

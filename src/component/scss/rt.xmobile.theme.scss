@@ -1,0 +1,35 @@
+@charset "UTF-8";
+$rt-primary: #0099ff !default;
+$rt-red: #de0347 !default;
+$rt-primary-activated: #0084ff !default;
+
+/************  Navbar  *************/
+
+.rt-nav-bar {
+    color: $rt-red;
+}
+
+.rt-nav-bar .button {
+    color:  $rt-red;
+}
+
+.rt-nav-bar .title {
+    color: $rt-red;
+}
+
+/************  Button  *************/
+
+.rt-btn {
+    background-color: $rt-red;
+}
+
+.rt-btn:not(:disabled).activated {
+    background-color: $rt-primary-activated;
+}
+
+
+/************  SearchBar  *************/
+
+.rt-search-bar ._button-search {
+    color: $rt-red;
+}

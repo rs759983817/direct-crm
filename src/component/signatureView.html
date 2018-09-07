@@ -1,0 +1,20 @@
+<div class="modal " ng-controller="signatureController">
+    <style>
+    .signature {
+        background-color: #f3f3f3;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.02) inset;
+    }
+    </style>
+    <header class="bar bar-header ">
+        <button class="button button-positive button-clear " ng-click="closeDialog()">关闭
+        </button>
+        <h1 class="title"><span class="padding-right positive">签名</span></h1>
+    </header>
+    <ion-content scroll="false" class="has-header">
+        <canvas id="signatureCanvas" class="signature"></canvas>
+    </ion-content>
+    <ion-footer-bar>
+        <button class="button button-positive button-clear" ng-click="clearClick()">清除</button>
+        <button class="button button-positive button-clear" ng-click="saveClick()">确定</button>
+    </ion-footer-bar>
+</div>

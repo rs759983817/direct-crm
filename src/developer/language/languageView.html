@@ -1,0 +1,14 @@
+<ion-view title="{{'LOGIN_CHOOSE_LANGUAGE'|translate}}" class="stable-bg">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="changeLanguage()">{{'BUTTON_SURE'|translate}}</button>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <ion-list>
+            <ion-radio ng-model="language.code" ng-value="'zh-CN'">简体中文</ion-radio>
+            <ion-radio ng-model="language.code" ng-value="'en-US'">English</ion-radio>
+            <ion-radio ng-model="language.code" ng-value="'ja-JP'">日本語</ion-radio>
+        </ion-list>
+    </ion-content>
+</ion-view>

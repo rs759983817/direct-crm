@@ -1,0 +1,30 @@
+<ion-view title="约会" class="stable-bg">
+    <ion-nav-buttons side="right">
+        <button class="rt-right-button button button-clear" ng-click="vm.saveClick()">
+            保存
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div style="margin-top:10px;color:#888;padding:5px 15px;">基本信息</div>
+        <div style="border-bottom:1px solid #d9d9d9;">
+            <rt-form style="margin-top:0;">
+                <!-- <rt-form-row-input rt-label="关于" rt-model="vm.data.regardingobjectidName" rt-disabled="true" rt-placeholder=" "></rt-form-row-input> -->
+                <rt-form-row-lookup style="border-top:1px solid #d9d9d9;border-top-left-radius:12px;border-top-right-radius:12px;" rt-label="联系人" rt-text-model="vm.data.new_contact.Text" rt-placeholder="请选择联系人" rt-on-lookup="vm.chooseContact()"></rt-form-row-lookup>
+                <rt-form-row-lookup rt-label="客户" rt-text-model="vm.data.new_account_id.Text" rt-placeholder="请选择客户" rt-on-lookup="vm.chooseAccount()"></rt-form-row-lookup>
+                <rt-form-row-lookup rt-label="商机" rt-text-model="vm.data.new_opportunity_id.Text" rt-placeholder="请选择商机" rt-on-lookup="vm.chooseOpportunity()"></rt-form-row-lookup>
+                <rt-form-row-input rt-label="主题" rt-required="true" rt-model="vm.data.subject" rt-placeholder="请填写主题"></rt-form-row-input>
+                <rt-form-row-date rt-type="datetime-local" rt-label="开始时间" rt-required="true" rt-model="vm.data.scheduledstart" rt-placeholder="请选择开始时间"></rt-form-row-date>
+                <rt-form-row-date rt-type="datetime-local" rt-label="结束时间" rt-required="true" rt-model="vm.data.scheduledend" rt-placeholder="请选择结束时间"></rt-form-row-date>
+                <rt-form-row-input rt-label="持续时间" rt-disabled="true" rt-model="vm.data.scheduleddurationminutes" rt-placeholder=" "></rt-form-row-input>
+                <rt-form-row-textarea rt-label="说明" rt-model="vm.data.description" rt-placeholder="请填写说明"></textarea>
+            </rt-form>
+        </div>
+        <div style="margin-top:10px;color:#888;padding:5px 15px;">位置信息</div>
+        <div style="border-top: 1px solid #d9d9d9;border-bottom: 1px solid #d9d9d9;border-top-left-radius:12px;border-top-right-radius:12px;padding: 10px 15px;background-color: #ffffff;position:relative;">
+            <div ng-if="vm.data.new_location" style="padding-right:75px;">{{vm.data.new_location}}</div>
+            <span ng-if="!vm.data.new_location" style="color:#888;">请先获取位置</span>
+            <button class="button button-clear button-positive" style="position: absolute;top:-3px;right:8px;color: #de0347;" ng-click="vm.getLocation()">获取位置</button>
+        </div>
+    </ion-content>
+
+</ion-view>

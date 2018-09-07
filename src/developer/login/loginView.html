@@ -1,0 +1,41 @@
+<ion-view view-title="{{'LOGIN' | translate}}" class="stable-bg">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="selectLanguage()">{{'LOGIN_CHOOSE_LANGUAGE' | translate}}</button>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <rt-form-row2-input rt-label="账号" 
+                            rt-type="text"
+                            rt-model="vm.userName"
+                            rt-placeholder="{{ 'LOGIN_PLS_INPUT_USERNAME' | translate}}">
+        </rt-form-row2-input>
+        <rt-form-row2-input rt-label="密码" 
+                            rt-type="password"
+                            rt-model="vm.password"
+                            rt-placeholder="{{ 'LOGIN_PLS_INPUT_PASSWORD' | translate}}">
+        </rt-form-row2-input>
+
+        <div style="padding:0 15px;">
+            <label>
+                <input type="checkbox" ng-model="vm.isSavePassword" />
+                <span style="color: #888888;">
+                    {{ 'LOGIN_REMEMBER_PASSWORD'| translate }}
+                </span>
+            </label>
+            <button class="button button-clear positive button-small" 
+                    ng-click="setServerAddress()"
+                    style="float: right;">
+                <span style="color:#0099ff;">{{ 'LOGIN_SET_SERVER_URL'| translate }}</span>
+            </button>
+        </div>
+
+        <div style="padding:0 15px;margin-top:35px;">
+            <button class="rt-btn" block ng-click="login()">
+                {{'LOGIN' | translate}}
+            </button>
+        </div>
+
+
+    </ion-content>
+</ion-view>

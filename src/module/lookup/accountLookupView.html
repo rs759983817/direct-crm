@@ -1,0 +1,119 @@
+<div class="modal" ng-controller="AccountLookupController"  class="stable-bg" >
+    <style>
+        .client_box{
+            margin: auto;
+            border: 1px solid #d9d9d9;
+            box-sizing: border-box;
+            border-radius: 12px;
+            background: #fff;
+            overflow: hidden;
+            margin-top: 8px;
+            margin-bottom: 1px;
+        }
+        .client_title{
+            /* min-height: 30px; */
+            display: flex;
+            color: #DE0347;
+            font-size: 15px;
+            background: #F5F5F5;
+            padding: 0px 16px 10px 16px;
+        }
+        .client_title>img{
+            line-height: 40px;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 6px;
+            margin-top: 10px;
+        }
+        .client_title>div{
+            width: 100%;
+            padding-top: 12px;
+            line-height: 18px;
+            padding-right: 4px;
+        }
+        .client_con{
+            display: flex;
+        }
+        .client_con_con{
+            width: 85%;
+            margin-left: 16px;
+        }
+        .client_con_con>div{
+            height: 36px;
+            line-height: 36px;
+            color: #bdbdbd;
+            font-size: 12px;
+        }
+        .client_con_con>div:nth-of-type(1){
+            border-bottom: 1px solid #d9d9d9;
+        }
+        .client_con_con>div>img{
+            width: 12px;
+            vertical-align: middle;
+            margin-right: 3px;
+        }
+        .client_con_con>div>span{
+            color: #333333;
+            padding-left: 12px;
+        }
+        .client_right{
+            content: '';
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border-top: 1px solid #c55075;
+            border-right: 1px solid #c55075;
+            transform: rotate(45deg);
+            margin-left: 7px;
+            margin-top: 31px;
+        }    
+    </style>
+    <header class="rt-nav-bar bar bar-header">
+        <button class="button button-clear button-icon ion-ios-arrow-left" ng-click="closeDialog()">
+        </button>
+        <h1 class="title">选择客户</h1>
+        <button class="button button-clear " ng-click="removeValue()"><h5 class="light">移除值</h5></button>
+    </header>
+    <ion-content class="has-header" style="border-top:none;">
+        <ion-refresher on-refresh="viewRefresh()"></ion-refresher>
+        <ion-list>
+            <div style="height:47px;">
+                <rt-search-bar rt-model="vm.queryValue"
+                               rt-placeholder="请输入客户名称"
+                               rt-on-search="search()">
+                </rt-search-bar>
+            </div>
+            <ion-item class="item-icon-right" style="border:none;background: #f5f5f5;margin-top: 0px;padding:0px 10px;" ng-repeat="user in vm.viewRowDataList track by $index" ng-click="selectData(user)">
+                <!-- <h2 style="white-space: normal;"><strong class="ng-binding">{{user.name}}</strong></h2>
+                <p><span>联系电话：</span><span class="ng-binding">{{user.telephone1}}</span></p>
+                <p><span>地址：</span><span class="ng-binding">{{user.address1_composite}}</span></p>
+                <i class="icon ion-ios-arrow-right"></i> -->
+                <div class="client_box">
+                    <div class="client_title">
+                        <img src="assets/image/kh.png" />
+                        <div>{{user.name}}</div>
+                    </div>
+                    <div class="client_con">
+                        <div class="client_con_con">
+                            <div>
+                                <img src="assets/image/l-phone.png" />
+                                联系电话
+                                <span>{{user.telephone1}}</span>
+                            </div>
+                            <div>
+                                <img src="assets/image/l-address.png" />
+                                地址
+                                <span>{{user.address1_composite}}</span>
+                            </div>
+                        </div>
+                        <div class="client_right"></div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <rt-empty-view rt-related-model="vm.viewRowDataList" rt-message="没有客户信息"></rt-empty-view>
+
+        <ion-infinite-scroll ng-if="isLoadMore" on-infinite="loadMoreClick()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</div>

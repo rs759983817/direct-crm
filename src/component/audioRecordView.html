@@ -1,0 +1,26 @@
+<div class="modal rt-audio-view" ng-controller="audioRecordController">
+    <div class="close-div" ng-click="closeDialog()">
+    <img class="close-img"
+         ng-class="{'close-button-img-1': recordButtonState == 0, 'close-button-img-2': recordButtonState != 0}"
+         src="component/img/clear.png" /></div>
+    <ion-content scroll="false" class="has-header">
+      <p ng-class="{'audio-title': recordButtonState == 0,
+                    'audio-title-recording': recordButtonState == 1 || recordButtonState == 2 || recordButtonState == 3}">
+                    {{titleMessage}}
+      </p>
+      <div id="button">
+      <img class="audio-button"
+             ng-class="{'audio-record': recordButtonState == 0,
+                        'audio-finish': recordButtonState == 1 || recordButtonState == 3,
+                        'audio-play': recordButtonState == 2}"
+             ng-click="startRecord()" src="component/img/clear.png" width="143px" />
+      </div>
+      <div ng-if="recordButtonState == 1 || recordButtonState == 2 || recordButtonState == 3" class="timeSpan">
+        {{timeSpan}}
+      </div>
+    </ion-content>
+    <div class="footer-buttons" ng-if="recordButtonState == 2 || recordButtonState == 3">
+      <div ng-click="cancelClick()" class="footer-button" style="float: left; border-right: 1px solid #d9d9d9;">取消</div>
+      <div ng-click="commit()" class="footer-button" style="float: right;">发送</div>
+    </div>
+</div>

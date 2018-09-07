@@ -1,0 +1,80 @@
+<ion-view title="应用" hide-nav-bar="true">
+    <style>
+        .application_banner {
+            width: 100%;
+        }
+
+        .application_banner img {
+            width: 100%;
+            display: block;
+        }
+
+        .application_menugroup {
+            background-color: #ffffff;
+        }
+
+        .application_menugroup+.application_menugroup {
+            margin-top: 15px;
+        }
+
+        .application_menugroup_title {
+            padding: 0 15px;
+            height: 42px;
+            line-height: 42px;
+            color: #003f5f;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        .application_menugroup_title i {
+            position: absolute;
+            top: 12px;
+            width: 2px;
+            height: 18px;
+            background-color: #003f5f;
+        }
+
+        .application_menugroup_title span {
+            margin-left: 12px;
+        }
+
+        .application_menugroup ul {
+            padding: 10px 0;
+        }
+
+        .application_menugroup ul>li {
+            float: left;
+            width: 25%;
+            text-align: center;
+        }
+
+        .application_menugroup.application_menugroup_main ul>li img {
+            width: 40%;
+        }
+
+        .application_menugroup ul>li img {
+            margin-top: 15px;
+
+            width: 30%;
+        }
+    </style>
+    <ion-content style="background-color:#F3F3F3">
+        <div>
+            <div class="application_menugroup" ng-class="{'application_menugroup_main':$index === 0}" ng-repeat="menu in vm.menus track by menu.SystemMenuId">
+                <div class="application_menugroup_title">
+                    <i></i>
+                    <span>{{menu.MenuName}}</span>
+                </div>
+                <ul>
+                    <li ng-repeat="submenu in menu.Children track by submenu.SystemMenuId">
+                        <a ng-click="openMenu('{{submenu.MenuUrl}}')">
+                            <img ng-src="{{serverAddress}}api/PortalMenu/{{submenu.SystemMenuId}}/icon" />
+                        </a>
+                        <p> {{submenu.MenuName}}</p>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

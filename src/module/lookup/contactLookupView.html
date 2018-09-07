@@ -1,0 +1,28 @@
+<div class="modal" ng-controller="ContactLookupController"  class="stable-bg" >
+    <header class="rt-nav-bar bar bar-header">
+        <button class="button button-clear button-icon ion-ios-arrow-left" ng-click="closeDialog()">
+        </button>
+        <h1 class="title">选择联系人</h1>
+        <button class="button button-clear " ng-click="removeValue()"><h5 class="light">移除值</h5></button>
+    </header>
+    <ion-content class="has-header">
+        <ion-refresher on-refresh="viewRefresh()"></ion-refresher>
+        <ion-list>
+            <div style="height:47px;">
+                <rt-search-bar rt-model="vm.queryValue"
+                               rt-placeholder="请输入联系人名称"
+                               rt-on-search="search()">
+                </rt-search-bar>
+            </div>
+            <ion-item class="item-icon-right"  ng-repeat="user in vm.viewRowDataList track by $index" ng-click="selectData(user)">
+                <h2><strong class="ng-binding">{{user.name}}</strong></h2>
+                <p><span>手机：</span><span class="ng-binding">{{user.mobilephone}}</span></p>
+                <p><span>地址：</span><span class="ng-binding">{{user.new_companyaddr}}</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </ion-item>
+        </ion-list>
+        <rt-empty-view rt-related-model="vm.viewRowDataList" rt-message="没有联系人信息"></rt-empty-view>
+
+        <ion-infinite-scroll ng-if="isLoadMore" on-infinite="loadMoreClick()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</div>

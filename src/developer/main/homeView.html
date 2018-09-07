@@ -1,0 +1,353 @@
+<ion-view title="首页" class="stable-bg">
+    <style type="text/css">
+        #rt-home-header{
+            display: inline-block;
+            height: 34px;
+            line-height: 34px;
+            vertical-align: middle;
+        }
+        
+        #rt-home-header span{
+            font-size:14px;
+            margin-right:20px;
+            display: inline-block;
+            height: 34px;
+            line-height: 34px;
+            vertical-align: 14px;
+            color:#ccc;
+        }
+        
+        #rt-home-header span.active{
+            color:#0099ff;
+            border-bottom: 2px solid #fff;
+        }
+        
+        #rt-home-list .item {
+            border: 0;
+            padding-top: 1px;
+            padding-bottom: 1px;
+        }
+        
+        #rt-home-list .item .rt-home-list-row {
+            border-bottom: 1px solid #f0f0f0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        #rt-home-list .item .rt-home-list-row-icon {
+            display: inline-block;
+            height: 68px;
+            line-height: 68px;
+            vertical-align: middle;
+            position: absolute;
+            right: 15px;
+            top:0px;
+            font-size:20px;
+            color: #2ec7c9;
+        }
+        
+         #rt-home-list .item .rt-home-list-row p i{
+             margin-right: 10px;
+         }
+         
+         #rt-home-list .item .rt-home-list-row > i{
+             position: absolute;
+             right:0px;
+             top:23px;
+         }
+         
+        #rt-home-list .item .rt-home-list-row span{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        #rt-home-list .item:first-child {
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        #rt-home-list .item:last-child {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        #rt-home-list .item:last-child .rt-home-list-row {
+            border-bottom: 0;
+        }
+        
+        #rt-home-subheader{
+            background-color: #fff;
+            font-size:14px;
+            color:#555;
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            vertical-align: middle;
+            text-align: center;
+            width:100%;
+        }
+        
+        #rt-home-list-header{
+            font-size:14px;
+            color: #888;
+            padding-left: 16px;
+            height: 48px;
+            line-height: 48px;
+            background-color: #fff;
+            width: 100%;
+        }
+        #rt-home-list-header span{
+            display: inline-block;
+            height: 48px;
+            line-height: 48px;
+            vertical-align: middle;
+            
+        }
+        #rt-rv01-list-01 .item {
+            border: 0;
+        }
+        #rt-rv01-list-01 .rt-rv01-item-title {
+            border-left: 4px solid #387ef5;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-size: 12px;
+        }
+        
+        #rt-rv01-list-01 .rt-rv01-item-divider {
+            min-height: 10px;
+            padding: 0;
+        }
+        /*月达成率*/
+        .spanMtdPercent{
+            border-radius:50%;
+            border: solid 2px;
+            border-color: orange;
+            line-height: 42px;
+            width: 48px;
+            height: 48px;
+            display: block;
+            text-align: center;
+            vertical-align: middle;
+        }
+        /*年达成率*/
+        .spanYtdPercent{
+            border-radius:50%;
+            border: solid 2px;
+            border-color:#024b78;
+            line-height: 42px;
+            width: 48px;
+            height: 48px;
+            display: block;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+    <ion-nav-title class="rt-bar-header">
+        <span ng-click="vm.chooseTabClick(1)" ng-class="{'active': vm.choosedTabType==1}">今日待办</span>
+        <span ng-click="vm.chooseTabClick(2)" ng-class="{'active': vm.choosedTabType==2}">仪表板</span>
+    </ion-nav-title>
+    <ion-content style="backgroud-color:#f3f3f3;">
+        <!--今日待办Start-->
+        <div id="rt-home-subheader" class="rt-calander-subheader" ng-if="vm.choosedTabType==1">
+            {{vm.chooseDate|date:'yyyy-MM'}}
+        </div>
+        <div id="rt-home-calendar" class="rt-calander" ng-if="vm.choosedTabType==1">
+            <p class="week">
+                <span ng-repeat="w in vm.dayName">{{w}}</span>
+            </p>
+            <p class="day">
+                <span ng-repeat="d in vm.weekDate track by $index"
+                      ng-click="vm.dateClick(d.Name)"
+                      ng-class="{'today':vm.nowDate.isSameDate(d.Name),
+                        'active':vm.chooseDate.getDate()==d.Name.getDate(),
+                        'inactive':vm.nowDate.getMonth()!=d.Name.getMonth()}">
+                    {{d.Name | date:"dd"}}
+                 </span>
+            </p>
+            <p class="day-event">
+                <span ng-repeat="d in vm.weekDate track by $index" ng-class="{'hasEvent':d.Value}">
+                </span>
+            </p>
+        </div>
+        <div id="rt-home-list-header" ng-if="vm.choosedTabType==1">
+            <span>今日待办</span>
+        </div>
+        <ion-refresher on-refresh="vm.viewRefresh()"></ion-refresher>
+        <ion-list id="rt-home-list" ng-if="vm.choosedTabType==1">
+            <ion-item ng-repeat="row in vm.cdata track by $index" ng-click="vm.ItemClick(row.Type,row.Id)">
+                <div class="rt-home-list-row">
+                    <p class="rt-text-important-02">{{row.Title}}</p>
+                    <p class="rt-text-important-02"><i class="icon ion-android-time"></i>{{row.PublishTime | date:'HH:mm'}}</p>
+                </div>
+                <i class="rt-home-list-row-icon icon rt-icon-visit" ng-if="row.Type!=='任务'"></i>
+                <i class="rt-home-list-row-icon icon rt-icon-task" ng-if="row.Type==='任务'"></i>
+            </ion-item>
+            <!--<ion-item ng-click="vm.visitItemClick('','')">-->
+                <!--<div class="rt-home-list-row">-->
+                    <!--<p class="rt-text-important-02">准备培训的PPT</p>-->
+                    <!--<p class="rt-text-important-02"><i class="icon ion-android-time"></i>20:00</p>-->
+                <!--</div>-->
+                <!--<i class="rt-home-list-row-icon icon rt-icon-task"></i>-->
+            <!--</ion-item>-->
+        </ion-list>
+        <!--今日待办End-->
+        <!--仪表板Start-->
+        <ion-list id="rt-rv01-list-01" ng-if="vm.choosedTabType==2">
+            <div class="item item-divider rt-rv01-item-divider"></div>
+            <ion-item class="rt-rv01-item-title">
+                <span>年度累计销售排名</span>
+            </ion-item>
+            <ion-item class="row">
+                <div class="col col-20">
+                    <p style="height:60px;line-height:60px;text-align:center;">
+                        <i style="color:#9c3088;font-size:48px;text-align:center;vertical-align:middle;" class="ion ion-connection-bars"></i>
+                    </p>
+                </div>
+                <div class="col col-40">
+                    <p style="text-align:center;margin-bottom:10px;">
+                        区域排名
+                    </p>
+                    <p style="text-align:center;margin-bottom:10px;font-size:26px;color:#9c3088;">
+                        {{ vm.data.AreaRank }}
+                    </p>
+                    <p style="text-align:center;color:yellow;">
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.AreaRankStar>=1]"></i>
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.AreaRankStar>=2]"></i>
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.AreaRankStar>=3]"></i>
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.AreaRankStar>=4]"></i>
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.AreaRankStar>=5]"></i>
+                    </p>
+                </div>
+                <div class="col col-40">
+                    <p style="text-align:center;margin-bottom:10px;">
+                        全国排名
+                    </p>
+                    <p style="text-align:center;margin-bottom:10px;font-size:26px;color:#9c3088;">
+                        {{vm.data.CountryRank}}
+                    </p>
+                    <p style="text-align:center;color:yellow;">
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.CountryRankStar>=1]"></i>
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.CountryRankStar>=2]"></i>
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.CountryRankStar>=3]"></i>
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.CountryRankStar>=4]"></i>
+                        <i ng-class="{true: 'ion-ios-star',false:'ion-ios-star-outline'}[vm.data.CountryRankStar>=5]"></i>
+                    </p>
+                </div>
+            </ion-item>
+            <div class="item item-divider rt-rv01-item-divider"></div>
+            <ion-item class="rt-rv01-item-title">
+                <span>MTD&nbsp;&nbsp;</span><span>本月达成率</span>
+            </ion-item>
+            <ion-item class="row">
+                <div class="col col-20">
+                    <span class="spanMtdPercent">{{vm.data.MtdDonePercent|number:1 }}%</span>
+                    <!--{{vm.data.MtdDonePercent}}-->
+                </div>
+                <div class="col col-40">
+                    <p style="text-align:right;">
+                        <span style="color:#FFC001;font-size:18px;">{{vm.data.MtdTagetMoney|number:2}}万元</span><span>&nbsp;&nbsp;目标</span>
+                    </p>
+                    <p style="text-align:right;">
+                        <span style="color:#FFDF82;">{{vm.data.MtdActualMoney|number:2}}万元</span><span>&nbsp;&nbsp;实际</span>
+
+                    </p>
+                </div>
+                <div class="col col-40">
+                    <p>
+                        <span style="display:inline-block;background-color:#FFC001;width:60%;height:20px;"></span>
+                    </p>
+                    <p>
+                        <span style="display:inline-block;background-color:#FFDF82;width:60%;height:20px;"></span>
+                    </p>
+                </div>
+            </ion-item>
+            <div class="item item-divider rt-rv01-item-divider"></div>
+            <ion-item class="rt-rv01-item-title">
+                <span>YTD&nbsp;&nbsp;</span><span>本年累计达成率</span>
+            </ion-item>
+            <ion-item class="row">
+                <div class="col col-20">
+                    <span class="spanYtdPercent">{{vm.data.YtdDonePercent|number:1}}%</span>
+                </div>
+                <div class="col col-40">
+                    <p style="text-align:right;">
+                        <span style="color:#024b78;font-size:18px;">{{vm.data.YtdTagetMoney|number:2}}万元</span><span>&nbsp;&nbsp;目标</span>
+                    </p>
+                    <p style="text-align:right;">
+                        <span style="color:#4398ce;">{{vm.data.YtdActualMoney|number:2}}万元</span><span>&nbsp;&nbsp;实际</span>
+                    </p>
+                </div>
+                <div class="col col-40">
+                    <p>
+                        <span style="display:inline-block;background-color:#024b78;width:60%;height:20px;"></span>
+                    </p>
+                    <p>
+                        <span style="display:inline-block;background-color:#4398ce;width:60%;height:20px;"></span>
+                    </p>
+                </div>
+            </ion-item>
+            <div class="item item-divider rt-rv01-item-divider"></div>
+            <ion-item class="rt-rv01-item-title">
+                <span></span><span>本月SFE数据</span>
+            </ion-item>
+            <ion-item class="row">
+                <div class="col-15" style="width:15%;">
+                    <p style="height:60px;line-height:60px;text-align:center;">
+                        <i style="color:#9c3088;font-size:36px;text-align:center;vertical-align:middle;" class="rt-icon-bfkhfgl"></i>
+                    </p>
+                </div>
+                <div class="col-35"  style="width:35%;">
+                    <p style="margin-bottom:10px;">
+                        拜访覆盖率
+                    </p>
+                    <p style="margin-bottom:10px;font-size:26px;color:#9c3088;">
+                        {{vm.data.VisitPercent|number:1}}%
+                    </p>
+                </div>
+                <!--<div class="col-15" style="width:15%;">-->
+                    <!--<p style="height:60px;line-height:60px;text-align:center;">-->
+                        <!--<i style="color:#9c3088;font-size:36px;text-align:center;vertical-align:middle;" class="rt-icon-bfpl"></i>-->
+                    <!--</p>-->
+                <!--</div>-->
+                <!--<div class="col-35" style="width:35%;">-->
+                    <!--<p style="margin-bottom:10px;">-->
+                        <!--拜访频率-->
+                    <!--</p>-->
+                    <!--<p style="margin-bottom:10px;font-size:26px;color:#9c3088;">-->
+                        <!--{{vm.data.VisitFrequency|number:2}}%-->
+                    <!--</p>-->
+                <!--</div>-->
+            </ion-item>
+            <ion-item class="row">
+                <div class="col-15" style="width:15%;">
+                    <p style="height:60px;line-height:60px;text-align:center;">
+                        <i style="color:#9c3088;font-size:36px;text-align:center;vertical-align:middle;" class="rt-icon-rjbf"></i>
+                    </p>
+                </div>
+                <div class="col-35" style="width:35%;">
+                    <p style="margin-bottom:10px;">
+                        日均拜访
+                    </p>
+                    <p style="margin-bottom:10px;font-size:26px;color:#9c3088;">
+                        {{vm.data.VisitNumPerDay|number:1}}
+                    </p>
+                </div>
+                <div class="col-15" style="width:15%;">
+                    <p style="height:60px;line-height:60px;text-align:center;">
+                        <i style="color:#9c3088;font-size:36px;text-align:center;vertical-align:middle;" class="rt-icon-sdgzts"></i>
+                    </p>
+                </div>
+                <div class="col-35" style="width:35%;">
+                    <p style="margin-bottom:10px;">
+                        工作天数
+                    </p>
+                    <p style="margin-bottom:10px;font-size:26px;color:#9c3088;">
+                        {{vm.data.WorkDay}}
+                    </p>
+                </div>
+            </ion-item>
+        </ion-list>
+        <!--仪表板End-->
+        <ion-infinite-scroll on-infinite="vm.loadMoreClick()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

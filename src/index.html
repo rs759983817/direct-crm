@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="xrmApp" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="lib/ion-datetime-picker/ion-datetime-picker.min.css?v=20180318135935">
+    <link rel="stylesheet" href="lib/ionic/css/ionic.min.css?v=20180318135935">
+    <link rel="stylesheet" href="lib/ionic/css/ionic.radio.css?v=20180318135935">
+    <link rel="stylesheet" href="lib/timeline/timeline.css?v=20180318135935">
+    <link rel="stylesheet" href="lib/mfb/mfb.css?v=20180318135935">
+    <link rel="stylesheet" href="lib/wechat/css/weui.min.css?v=20180318135935">
+    <link rel="stylesheet" href="component/css/rt.xmobile.css?v=20180318135935">
+    <link rel="stylesheet" href="component/css/rt.xmobile.theme.css?v=20180318135935">
+
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ROninBdEIu93CBGDHc3fSPHE"></script>
+    <script src="lib/lodash/js/lodash.min.js?v=20180318135935"></script>
+    <script src="lib/moment-2.10.6/moment-with-locales.min.js?v=20180318135935"></script>
+    <script src="lib/echarts/js/echarts.min.js?v=20180318135935"></script>
+    <script src="lib/wechat/js/jweixin-1.2.0.min.js?v=20180318135935"></script>
+    <script src="lib/aliyun-oss/aliyun-oss-sdk.min.js?v=20180318135935"></script>
+    <script src="lib/ionic/js/ionic.bundle.min.js?v=20180318135935"></script>
+    <script src="lib/angular/js/angular-translate.min.js?v=20180318135935"></script>
+    <script src="lib/angular/js/angular-scrollto.js?v=20180318135935"></script>
+    <script src="lib/angular/js/angular-ios9-uiwebview-patch.min.js?v=20180318135935"></script>
+    <script src="lib/require/require.min.js?v=20180318135935"></script>
+    <script src="lib/cache/js/cache-1.0.js?v=20180318135935"></script>
+    <script src="lib/mfb/mfb.js?v=20180318135935"></script>
+    <script src="lib/ion-datetime-picker/ion-datetime-picker.min.js?v=20180318135935"></script>
+    <script src="component/js/rt.xmobile.js?v=20180318135935"></script>
+    <script src="component/js/rt.xmobile.language.js?v=20180318135935"></script>
+    <script src="developer/modules.js?v=20180318135935"></script>
+    <script src="developer/controllers.js?v=20180318135935"></script>
+    <script src="developer/languages.js?v=20180318135935"></script>
+
+    <!-- build:css -->
+    <!-- endbuild -->
+    <!-- build:js -->
+    <!-- endbuild -->
+    
+    <script type="text/javascript">
+        if (location.origin.startsWith("http")) {
+            localStorage.XrmBaseUrl = location.origin;
+        }
+    </script>
+</head>
+
+<body>
+    <ion-nav-bar class="rt-nav-bar nav-title-slide-ios7" align-title="center">
+        <ion-nav-back-button class="button-clear icon ion-ios-arrow-left"></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view animation="slide-left-right">
+    </ion-nav-view>
+</body>
+
+</html>

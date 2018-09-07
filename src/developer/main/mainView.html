@@ -1,0 +1,184 @@
+<ion-view title="瑞云CRM" class="stable-bg" hide-nav-bar="false">
+    <ion-tabs class="tabs-positive tabs-icon-top">
+        <ion-tab title="首页" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline" ng-controller="MainController">
+            <ion-nav-view name="home-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="消息" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline" ng-controller="MainController">
+            <ion-nav-view name="messages-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="CRM" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline"
+                 ng-controller="ApplicationController">
+            <ion-view>
+                <ion-content has-header="true">
+                    <ion-list>
+                        <ion-item ng-repeat="menu in vm.menus track by menu.MenuCode" class="item-icon-right">
+                            <h2>
+                                <a ng-href="/#/{{menu.MenuUrl}}" style="text-decoration: none;">
+                                    <img ng-src="data:image/png;base64,{{menu.MenuIcon}}"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    {{menu.MenuName}}</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="办公" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline"
+                 ng-controller="WorkspaceController">
+            <ion-view>
+                <ion-content has-header="true">
+                    <ion-list>
+                        <div class="item item-divider"></div>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('addressBook-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/addressBook.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    通讯录</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('notice-listview')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/notice.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    公告</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('knowledge-default')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/knowledge.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    知识库</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <div class="item item-divider"></div>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('task-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/task.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    任务</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('officeAttendance-map')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/officeAttendance.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    考勤管理</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('attendance-map')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/attendance-icon.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    外勤签到</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <div class="item item-divider"></div>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('addressBook-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/addressBook.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    工作报告</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('dailyreport-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/dailyreport.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    日报</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('weeklyreport-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/weeklyreport.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    周报</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('monthlyreport-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/monthlyreport.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    月报</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <div class="item item-divider"></div>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('flowApproval-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/flowApproval.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    审批</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('businessTrip-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/businessTrip.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    出差申请</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('absence-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/absence-icon.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    请假申请</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('expense-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/expense-icon.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    报销申请</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                        <ion-item class="item-icon-right" ng-click="workspaceItemClick('commonApplication-list')">
+                            <h2>
+                                <a href="#" style="text-decoration: none;">
+                                    <img ng-src="asset/img/commonApplication-icon.png"
+                                         style="vertical-align:bottom;height:1.2em;padding-right:10px;"/>
+                                    通用申请</a>
+                            </h2>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+
+        <ion-tab title="我" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline" ng-controller="MainController">
+            <ion-nav-view name="setting-tab"></ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>
+</ion-view>
